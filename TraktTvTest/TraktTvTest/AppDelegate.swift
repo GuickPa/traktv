@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,10 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let movieManager = MovieManager();
-        movieManager.loadMovies { (list: NSArray?, error: NSError?) -> Void in
-            
-        }
+        let movieManager = MovieManager.sharedInstance();
+        //GUI: clear previous entries
+        movieManager.clear()
         
         return true
     }
@@ -45,6 +45,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        self.saveContext()
+    }
+    
+    //GUI: Core Data stack
+    
+    lazy var applicationDocumentsDirectory: NSURL = {
+        //GUI: The directory the application uses to store the Core Data store file. 
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        return urls[urls.count-1] 
+    }()
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        //GUI: The managed object model for the application.
+        let modelURL = NSBundle.mainBundle().URLForResource("TraktTvTest", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
+    }()
+    
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+        //GUI: The persistent store coordinator for the application.
+        var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("TraktTvTest.sqlite")
+        var error: NSError? = nil
+        var failureReason = "There was an error creating or loading the application's saved data."
+        do {
+             try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        }
+        catch let error as NSError{
+            coordinator = nil
+            NSLog("Unresolved error \(error), \(error.userInfo)")
+        }
+        
+        return coordinator
+    }()
+    
+    lazy var managedObjectContext: NSManagedObjectContext? = {
+        //GUI: Returns the managed object context for the application
+        let coordinator = self.persistentStoreCoordinator
+        if coordinator == nil {
+            return nil
+        }
+        var managedObjectContext = NSManagedObjectContext()
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
+    }()
+    
+    //GUI: Core Data Saving support
+    func saveContext () {
+        if let moc = self.managedObjectContext {
+            if moc.hasChanges {
+                do{
+                    try moc.save()
+                }
+                catch let error as NSError{
+                    NSLog("Unresolved error \(error), \(error.userInfo)")
+                }
+            }
+        }
     }
 
 

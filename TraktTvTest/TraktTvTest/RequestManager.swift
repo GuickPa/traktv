@@ -27,12 +27,13 @@ class RequestManager: NSObject {
     func buildMutableRequest(urlString: String!, params: NSDictionary?) -> NSMutableURLRequest?
     {
         //GUI: init mutable request
-        let completeURL: String = baseURL + urlString;
-        let url: NSURL? = NSURL(string: completeURL)
+        let url: NSURL? = NSURL(string: urlString)
         let request: NSMutableURLRequest? = NSMutableURLRequest(URL: url!);
+        //GUI: add headers to request
         request?.addValue(apiKey, forHTTPHeaderField: "trakt-api-key");
         request?.addValue("2", forHTTPHeaderField: "trakt-api-version");
         request?.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //GUI: try to add params to body
         do{
             if params != nil
             {
@@ -48,11 +49,11 @@ class RequestManager: NSObject {
     }
     
     
-    func GET(urlString: String!, params: NSDictionary?, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void)
+    func GET(urlString: String!, params: NSDictionary?, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) -> NSURLSessionDataTask?
     {
         //GUI: init mutable request
         let request: NSMutableURLRequest? = buildMutableRequest(urlString, params: params)
-        //GUI: add header to request
+        //GUI: init callback
         let dataTask: NSURLSessionDataTask? = defaultSession.dataTaskWithRequest(request!) {
             data, response, error in
 
@@ -68,6 +69,7 @@ class RequestManager: NSObject {
             }
         
         }
+        //GUI: start request or send error message
         if dataTask != nil
         {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -77,6 +79,7 @@ class RequestManager: NSObject {
         {
             completionHandler(nil, nil, nil)
         }
+        
+        return dataTask
     }
-
 }
