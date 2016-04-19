@@ -13,7 +13,6 @@
 		3D0560641CC0D5DE00FDA061 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0560621CC0D5DE00FDA061 /* Movie.swift */; };
 		3D0560671CC0EA6100FDA061 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0560661CC0EA6100FDA061 /* MovieTableViewCell.swift */; };
 		3D05606A1CC1284600FDA061 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0560691CC1284600FDA061 /* ImageLoader.swift */; };
-		3D30365B1CC66E7F00F7FB92 /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 3D30365A1CC66E7F00F7FB92 /* Readme.md */; };
 		3DA656FA1CC5124E00997BE0 /* SearchMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA656F91CC5124E00997BE0 /* SearchMovieListViewController.swift */; };
 		3DA656FD1CC53C3400997BE0 /* MovieResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA656FB1CC53C3400997BE0 /* MovieResult+CoreDataProperties.swift */; };
 		3DA656FE1CC53C3400997BE0 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA656FC1CC53C3400997BE0 /* MovieResult.swift */; };
@@ -34,7 +33,6 @@
 		3D0560621CC0D5DE00FDA061 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3D0560661CC0EA6100FDA061 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		3D0560691CC1284600FDA061 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		3D30365A1CC66E7F00F7FB92 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		3DA656F91CC5124E00997BE0 /* SearchMovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMovieListViewController.swift; sourceTree = "<group>"; };
 		3DA656FB1CC53C3400997BE0 /* MovieResult+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MovieResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3DA656FC1CC53C3400997BE0 /* MovieResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				3DE87F151CBF91AA00DE4884 /* LaunchScreen.storyboard */,
 				3DE87F181CBF91AA00DE4884 /* Info.plist */,
 				3D05605E1CC0D2C800FDA061 /* TraktTvTest.xcdatamodeld */,
-				3D30365A1CC66E7F00F7FB92 /* Readme.md */,
 			);
 			path = TraktTvTest;
 			sourceTree = "<group>";
@@ -207,7 +204,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D30365B1CC66E7F00F7FB92 /* Readme.md in Sources */,
 				3D0560641CC0D5DE00FDA061 /* Movie.swift in Sources */,
 				3DE87F231CBFA89200DE4884 /* MovieManager.swift in Sources */,
 				3DE87F0B1CBF91AA00DE4884 /* AppDelegate.swift in Sources */,
