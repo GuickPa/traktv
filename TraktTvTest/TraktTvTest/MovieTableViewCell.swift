@@ -12,6 +12,8 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var mainTitleLabel: UILabel!
+    //GUI: image loading task
+    var imageLoaderTask: NSURLSessionDataTask? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,17 +33,26 @@ class MovieTableViewCell: UITableViewCell {
         if let year = movie?.year?.stringValue {mainTitleLabel.text?.appendContentsOf(" - \(year)")}        
         
         if let banner = movie?.banner{
-            ImageLoader.loadImage(banner, completationBlock: { (image: UIImage?, error: NSError?) -> Void in
+            imageLoaderTask = ImageLoader.loadImage(banner, completationBlock: { (image: UIImage?, error: NSError?) -> Void in
                 //GUI: on ui thread
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.backgroundImageView.image = image
-                })
+                if error == nil{
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.backgroundImageView.image = image
+                    })
+                }
             })
         }
         else
         {
             NSLog("no image")
         }
+    }
+    
+    override func prepareForReuse()
+    {
+        super.prepareForReuse()
+        imageLoaderTask?.cancel()
+        imageLoaderTask = nil
     }
 
 }

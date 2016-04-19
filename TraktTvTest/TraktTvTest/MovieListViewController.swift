@@ -96,6 +96,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool)
     {
+        //GUI: check edge to load new entries
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         if bottomEdge >= scrollView.contentSize.height {
             

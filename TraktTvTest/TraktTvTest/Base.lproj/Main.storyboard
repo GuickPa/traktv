@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Populars-->
+        <!--Movie List View Controller-->
         <scene sceneID="IA6-S0-34c">
             <objects>
                 <viewController id="cYi-mp-ToU" customClass="MovieListViewController" customModule="TraktTvTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X9j-gt-Ssa">
                                 <rect key="frame" x="0.0" y="28" width="600" height="523"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="it.guglielmodeletis.traktv.cell" id="wvT-8y-hDG" customClass="MovieTableViewCell" customModule="TraktTvTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="128"/>
@@ -50,7 +50,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-8d-6qA">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-8d-6qA">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nX6-4O-lTH">
@@ -103,7 +103,7 @@
                                     <outlet property="delegate" destination="cYi-mp-ToU" id="CRw-3s-yJB"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kZg-JT-b9j">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="kZg-JT-b9j">
                                 <rect key="frame" x="290" y="500" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -118,7 +118,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Populars" id="uZW-6d-wPs"/>
+                    <tabBarItem key="tabBarItem" systemItem="topRated" id="uZW-6d-wPs"/>
                     <connections>
                         <outlet property="loadingView" destination="kZg-JT-b9j" id="mxj-TG-gdC"/>
                         <outlet property="mainTableView" destination="X9j-gt-Ssa" id="XI4-pi-nkH"/>
@@ -128,7 +128,7 @@
             </objects>
             <point key="canvasLocation" x="952" y="-162"/>
         </scene>
-        <!--Search-->
+        <!--Search Movie List View Controller-->
         <scene sceneID="EOK-36-bgi">
             <objects>
                 <viewController id="rN7-eL-ijy" customClass="SearchMovieListViewController" customModule="TraktTvTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,14 +185,19 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="YGN-lI-tRj">
+                                                            <rect key="frame" x="290" y="230" width="20" height="20"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.43529411759999997" green="0.43529411759999997" blue="0.43529411759999997" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="NNi-Py-KOp" secondAttribute="trailing" constant="8" id="AiI-uR-Np2"/>
                                                         <constraint firstAttribute="bottom" secondItem="Hwx-K0-YN4" secondAttribute="bottom" constant="8" id="CcU-4A-oY4"/>
+                                                        <constraint firstItem="YGN-lI-tRj" firstAttribute="centerX" secondItem="3V5-HG-Adl" secondAttribute="centerX" id="E7h-jX-GCA"/>
                                                         <constraint firstItem="Hwx-K0-YN4" firstAttribute="leading" secondItem="3V5-HG-Adl" secondAttribute="leading" constant="8" id="Pbs-dg-vnY"/>
                                                         <constraint firstItem="NNi-Py-KOp" firstAttribute="top" secondItem="3V5-HG-Adl" secondAttribute="top" constant="8" id="Uvc-x0-YzT"/>
                                                         <constraint firstItem="NNi-Py-KOp" firstAttribute="leading" secondItem="3V5-HG-Adl" secondAttribute="leading" constant="8" id="i0v-3e-hET"/>
+                                                        <constraint firstItem="YGN-lI-tRj" firstAttribute="centerY" secondItem="3V5-HG-Adl" secondAttribute="centerY" id="ib1-Oa-71p"/>
                                                         <constraint firstItem="Hwx-K0-YN4" firstAttribute="top" secondItem="NNi-Py-KOp" secondAttribute="bottom" constant="8" id="pAe-Yc-34C"/>
                                                         <constraint firstAttribute="trailing" secondItem="Hwx-K0-YN4" secondAttribute="trailing" constant="8" id="xTg-Ca-F74"/>
                                                     </constraints>
@@ -212,6 +217,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="backgroundImageView" destination="JsW-eO-ASH" id="DCH-cf-nf6"/>
+                                            <outlet property="loadingView" destination="YGN-lI-tRj" id="uZF-t0-hdA"/>
                                             <outlet property="overviewLabel" destination="Hwx-K0-YN4" id="1PY-yk-uL5"/>
                                             <outlet property="titleLabel" destination="NNi-Py-KOp" id="pqE-jR-hW6"/>
                                         </connections>
@@ -248,7 +254,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Search" id="dz1-AW-lSq"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="dz1-AW-lSq"/>
                     <connections>
                         <outlet property="loadingView" destination="Tet-GJ-cZ6" id="c03-Nf-82k"/>
                         <outlet property="mainCollectionView" destination="Roq-3f-GVZ" id="ma1-XW-lJw"/>

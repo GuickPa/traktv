@@ -34,14 +34,27 @@ class SearchMovieListViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         //GUI: force collectionview to layout
-        self.mainCollectionView.collectionViewLayout.invalidateLayout()
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        if isViewLoaded() {
+            //GUI: invalidate layout to respond to orientation transitions
+            self.mainCollectionView.collectionViewLayout.invalidateLayout()
+            //GUI: add a callback to coordinator to restore content offset after transition
+            coordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
+                //GUI: empty: no need to add animation
+                }, completion: { (context: UIViewControllerTransitionCoordinatorContext) -> Void in
+                    //GUI: reset offset on new size
+                    self.mainCollectionView.contentOffset.x = self.mainCollectionView.frame.size.width * CGFloat(self.mainPageControl.currentPage)
+            })
+        }
     }
     
+    //GUI: hides keyboard
     @IBAction func onTapOutsideKeyboard(sender: AnyObject) {
         if mainSearchBar.isFirstResponder(){
             mainSearchBar.resignFirstResponder()
         }
     }
+    
     // MARK: - Search functions
     private func searchWithQuery(query: NSString)
     {
@@ -73,8 +86,8 @@ class SearchMovieListViewController: UIViewController, UICollectionViewDelegate,
         else
         {
             MovieManager.sharedInstance().clearMovieResults()
-            self.mainPageControl.hidden = false
-            self.mainCollectionView.hidden = false
+            self.mainPageControl.hidden = true
+            self.mainCollectionView.hidden = true
             self.mainCollectionView.reloadData()
         }
     }

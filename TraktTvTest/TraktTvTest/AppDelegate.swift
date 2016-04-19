@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let movieManager = MovieManager.sharedInstance();
         //GUI: clear previous entries
         movieManager.clear()
-        
+        movieManager.clearMovieResults()
+        //GUI: sleep to let user to enjoy my launchscreen
+        sleep(1)
         return true
     }
 

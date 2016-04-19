@@ -76,15 +76,16 @@ class MovieManager: NSObject {
         let requestManager: RequestManager! = RequestManager.sharedInstance();
         requestManager.GET("\(requestManager.baseURL)movies/popular?extended=full,images&page=\(page)&limit=\(limit)", params: nil) { (data, response, error) -> Void in
             if error == nil {
-                
-                do{
-                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                    self.buildListFromJSONObject(jsonObject)
-                    completionHandler(nil)
-                }
-                catch {
-                    
-                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    do{
+                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                        self.buildListFromJSONObject(jsonObject)
+                        completionHandler(nil)
+                    }
+                    catch {
+                        
+                    }
+                })
                 
             }
             else
@@ -228,17 +229,18 @@ class MovieManager: NSObject {
         //GUI: call for search and save task
         lastSearchTask = requestManager.GET("\(requestManager.baseURL)search?type=movie&query=\(query)", params: nil) { (data, response, error) -> Void in
             if error == nil {
-                
-                do{
-                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                    self.buildListOfResultsFromJSONObject(jsonObject)
-                    self.lastSearchTask = nil                    
-                    completionHandler(nil)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    do{
+                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                        self.buildListOfResultsFromJSONObject(jsonObject)
+                        self.lastSearchTask = nil                    
+                        completionHandler(nil)
 
-                }
-                catch {
-                    
-                }
+                    }
+                    catch {
+                        
+                    }
+                })
                 
             }
             else
