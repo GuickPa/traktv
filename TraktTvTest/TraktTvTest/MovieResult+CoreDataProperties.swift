@@ -1,5 +1,5 @@
 //
-//  Movie+CoreDataProperties.swift
+//  MovieResult+CoreDataProperties.swift
 //  TraktTvTest
 //
 //  Created by Guglielmo on 18/04/16.
@@ -12,13 +12,7 @@
 import Foundation
 import CoreData
 
-extension Movie {
+extension MovieResult {
 
-    @NSManaged var banner: String?
-    @NSManaged var index: NSNumber?
-    @NSManaged var overview: String?
-    @NSManaged var poster: String?
-    @NSManaged var title: String?
-    @NSManaged var year: NSNumber?
 
 }

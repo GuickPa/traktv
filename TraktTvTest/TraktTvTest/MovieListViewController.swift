@@ -47,7 +47,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         var list = [NSIndexPath]()
         let previousCount = movieCount
-        movieCount = (MovieManager.singleton?.movieCount())!
+        movieCount = MovieManager.sharedInstance().movieCount()
         let diff = movieCount - previousCount
         if(diff > 0)
         {
@@ -99,6 +99,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         if bottomEdge >= scrollView.contentSize.height {
             
+            scrollView.scrollEnabled = false
             //GUI: load another bunch of movies
             loadingView.startAnimating()
             let movieManager = MovieManager.sharedInstance()
@@ -109,6 +110,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
 
                     self.loadingView.stopAnimating()
                     self.updateTableCells()
+                    scrollView.scrollEnabled = true
                 })
             })
         }

@@ -3,12 +3,14 @@
     <entity name="Movie" representedClassName=".Movie" syncable="YES">
         <attribute name="banner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="overview" attributeType="String" syncable="YES"/>
+        <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="poster" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="year" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="MovieResult" representedClassName=".MovieResult" parentEntity="Movie" syncable="YES"/>
     <elements>
         <element name="Movie" positionX="-189" positionY="-252" width="128" height="133"/>
+        <element name="MovieResult" positionX="-0" positionY="-205" width="128" height="43"/>
     </elements>
 </model>

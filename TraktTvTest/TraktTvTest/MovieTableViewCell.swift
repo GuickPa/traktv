@@ -38,6 +38,10 @@ class MovieTableViewCell: UITableViewCell {
                 })
             })
         }
+        else
+        {
+            NSLog("no image")
+        }
     }
 
 }
